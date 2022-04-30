@@ -1,11 +1,9 @@
 from typing import Text
 import discord
-import aiohttp
 import os
 from os import listdir
 from os.path import isfile, join
-import json
-import os
+import aiosqlite
 from dotenv import load_dotenv
 from pretty_help import DefaultMenu, PrettyHelp
 from discordLevelingSystem import DiscordLevelingSystem, RoleAward, LevelUpAnnouncement
