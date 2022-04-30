@@ -15,9 +15,8 @@ from discordLevelingSystem import DiscordLevelingSystem, RoleAward, LevelUpAnnou
 load_dotenv()
 
 
-
-def mic(ctx):
-    return ctx.author.id == 481377376475938826
+def micsid(ctx):
+    return ctx.author.id == 481377376475938826 or ctx.author.id == 624076054969188363
 
 
 
