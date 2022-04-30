@@ -5,8 +5,8 @@ from os import listdir
 from os.path import isfile, join
 import aiosqlite
 from dotenv import load_dotenv
-from pretty_help import DefaultMenu, PrettyHelp
 from discordLevelingSystem import DiscordLevelingSystem, RoleAward, LevelUpAnnouncement
+from pyparsing import Word
 
 load_dotenv()
 
@@ -20,42 +20,41 @@ def micsid(ctx):
 from discord.ext import commands, tasks
 
 
+
 intents = discord.Intents.all()
 intents.presences = True
 intents.members = True
 intents.guilds=True
 
-client = commands.Bot(command_prefix="!", intents=intents, presences = True, members = True, guilds=True, case_insensitive=True, allowed_mentions = discord.AllowedMentions(everyone=False),  help_command=PrettyHelp())
+client = commands.Bot(command_prefix="!", intents=intents, presences = True, members = True, guilds=True, case_insensitive=True, allowed_mentions = discord.AllowedMentions(everyone=False))
+
+async def update_activity(client):
+    await client.change_presence(activity=discord.Game(f"On {len(client.guilds)} servers! | .help"))
+    print("Updated presence")
 
 @client.event
 async def on_ready():
     # Setting `Playing ` status
     print("we have powered on, I an alive.")
     await update_activity(client)
-    channel = client.get_channel(925787897527926805)
-    await channel.send("Online")
+    print("test")
 
 
 
-
-# Custom ending note
-menu = DefaultMenu(page_left="◀", page_right="▶", remove="❌", active_time=10)
-
-# Custom ending note
-ending_note = "Thank you for using simplex!\nIf you have any questions or concerns feel free to DM me.\n "
-
-client.help_command = PrettyHelp(menu=menu, ending_note=ending_note, color=0x20BEFF)
-
-async def update_activity(client):
-    await client.change_presence(activity=discord.Game(f"On {len(client.guilds)} servers! | .help"))
-    print("Updated presence")
+with open('database/links.txt') as file:
+    file = file.read().split()
 
 
+#----------------------------------EVENTS----------------------------------
 
-
-
-
-
+@client.event 
+async def on_message(message):
+    for badword in file:
+        if badword in message.content.lower():
+            await message.channel.send(f'{message.author.mention}! That Link is a scam. Please do not share it!')
+            await message.add_reaction('<:SCAM:969878289537716234>')
+        else:
+            await client.process_commands(message)
 
     
 TOKEN = os.getenv("DISCORD_TOKEN")
