@@ -72,7 +72,19 @@ async def on_member_join(member):
             user = member.guild.owner
             await user.send(f'{member.mention}! is a known scammer. He joined your server {member.guild.name} Please keep a eye on him and report any links he shares so we can add them to our database')
 
-
+@client.slash_command()
+async def donations(self,ctx):
+    em = discord.Embed(title = 'Donation', description = 'Donate to the bot to help keep it running!', color = 0x8BE002)
+    em.add_field(name = ':BTC :', value = '**3Fi97A4fLw8Yycv7F3DwSfMgBJ3zjB1AFL**')
+    em.add_field(name = ':ETH :', value = '**0x7Cfa740738ab601DCa9740024ED8DB585E2ed7478**')
+    em.add_field(name = ':Doge :', value = '**DQVkWKqGoTGUY9MeN3HiUt49JfcC9aE7fp**')
+    em.add_field(name = ':MPL  :', value = '**0xbDBb6403CA6D1681F0ef7A2603aD65a9F09AF138**')
+    em.add_field(name = ':XMR  :', value = '**43rsynRD1qtCA1po9myFsc7ti5havFcXUZPdSZuMexU4DnEyno55TE16eWqFkMLMbwZ7DuRW4ow5kcWzQQYu96NH7XMk6cE**')
+    em.add_field(name="Buy me a coffee", value="[Click here](https://www.buymeacoffee.com/Michaelrbparker)")
+    
+    
+    await ctx.respond(embed = em)
+ 
     
 TOKEN = os.getenv("DISCORD_TOKEN")
 
