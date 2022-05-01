@@ -37,7 +37,7 @@ async def on_ready():
     # Setting `Playing ` status
     print("we have powered on, I an alive.")
     await update_activity(client)
-    print("test")
+    
 
 
 
