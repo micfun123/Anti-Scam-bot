@@ -56,6 +56,17 @@ async def on_message(message):
         else:
             await client.process_commands(message)
 
+with open('database/userfile.txt') as userfile:
+    userfile = userfile.read().split()
+
+@client.event
+async def on_member_join(member):
+    for names in userfile:
+        if names in member.name.lower():
+            user = member.guild.owner
+            await user.send(f'{member.mention}! is a known scammer. Please keep a eye on him and report any links he shares so we can add them to our database')
+
+
     
 TOKEN = os.getenv("DISCORD_TOKEN")
 
