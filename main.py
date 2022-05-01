@@ -37,6 +37,10 @@ async def on_ready():
     # Setting `Playing ` status
     print("we have powered on, I an alive.")
     await update_activity(client)
+
+@client.event
+async def on_server_join():
+    await update_activity(client)
     
 
 
