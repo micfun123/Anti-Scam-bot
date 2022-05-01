@@ -57,13 +57,14 @@ async def on_message(message):
             await client.process_commands(message)
 
 with open('database/userfile.txt') as userfile:
-    userfile = userfile.read().split()
+    userfile = userfile.read().split('\n') 
 
 @client.event
 async def on_member_join(member):
-    for names in userfile:
-        if names in member.name.lower():
+    for user_id in userfile:
+        if user_id == member.id:
             user = member.guild.owner
+            print(f"{member.name} has joined the server!")
             await user.send(f'{member.mention}! is a known scammer. Please keep a eye on him and report any links he shares so we can add them to our database')
 
 
