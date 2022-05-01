@@ -61,11 +61,11 @@ with open('database/userfile.txt') as userfile:
 
 @client.event
 async def on_member_join(member):
-    for user_id in userfile:
-        if user_id == member.id:
-            user = member.guild.owner
+    for names in userfile:
+        if str(member.id) in names:
             print(f"{member.name} has joined the server!")
-            await user.send(f'{member.mention}! is a known scammer. Please keep a eye on him and report any links he shares so we can add them to our database')
+            user = member.guild.owner
+            await user.send(f'{member.mention}! is a known scammer. He joined your server {member.guild.name} Please keep a eye on him and report any links he shares so we can add them to our database')
 
 
     
