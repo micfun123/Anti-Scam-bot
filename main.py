@@ -39,8 +39,9 @@ async def on_ready():
     await update_activity(client)
 
 @client.event
-async def on_server_join():
+async def on_server_join(guild):
     await update_activity(client)
+    await guild.owner.send(f"Hey thank you for helping to fight scams to report a scam please use our discord or spead to the maker. If this bot helps please feel free to donate to keep the database alive \n <https://www.buymeacoffee.com/Michaelrbparker> \n <https://discord.gg/FQHbfnC7hE>")
     
 
 
