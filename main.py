@@ -45,6 +45,12 @@ async def on_server_join(guild):
     await guild.owner.send(f"Hey thank you for helping to fight scams to report a scam please use our discord or spead to the maker. If this bot helps please feel free to donate to keep the database alive \n <https://www.buymeacoffee.com/Michaelrbparker> \n <https://discord.gg/FQHbfnC7hE>")
     
 
+@client.slash_command()
+async def reportlink(ctx,message:str):
+    await ctx.respond(f"<{message}> has been reported")
+    reportchannel = await client.fetch_channel(969795532736323665)
+    await reportchannel.send(f"<{message}> has been reported")
+
 
 
 with open('database/links.txt') as file:
